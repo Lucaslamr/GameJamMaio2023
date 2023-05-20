@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: base_terreno
+  m_Name: grama
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 0561c3d087481ff41822b6bd3dca6d79, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 10dfb54af5e61774c9c49efa9e944523, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
