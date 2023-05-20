@@ -24,7 +24,7 @@ public class GamePlayState : IState
             Camera.main.backgroundColor = color;
             deaths++;
             if(deaths > 2)
-                nextState = EState.GameOver;
+                nextState = EState.MainMenu;
         }
 
         return nextState;

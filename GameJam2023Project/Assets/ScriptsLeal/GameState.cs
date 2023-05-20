@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
-public enum EState { MainMenu, GamePlay, GameOver }
+public enum EState { MainMenu, GamePlay}
 
 
 [System.Serializable]
