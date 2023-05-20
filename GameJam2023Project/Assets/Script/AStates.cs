@@ -11,6 +11,7 @@ public abstract class AStates
     protected PlayerController player;
     protected StateMachine state;
     protected static readonly int speedParam = Animator.StringToHash("Speed");
+    protected static readonly int transitionParam = Animator.StringToHash("Transition");
 
     public AStates(PlayerController _player, StateMachine _state)
     {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class Walk : AStates
@@ -13,15 +14,19 @@ public class Walk : AStates
 
     public override void OnBegin()
     {
+        animator.SetBool(transitionParam, false);
         nextState = PlayerEstates.Walk;
     }
     public override PlayerEstates OnUpdate()
     {
-        animator.SetFloat(speedParam, Mathf.Abs(body.velocity.x));
+        animator.SetFloat(speedParam, Mathf.Abs(Mathf.Max(Mathf.Pow(body.velocity.x,2.0f), Mathf.Pow(body.velocity.y,2.0f))));
         movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         if (movement.sqrMagnitude > 0.1f)
         {
-            srenderer.flipX = !(movement.x > 0.0f);
+            if ((movement.x * movement.x) > 0.1f) 
+            {  
+                srenderer.flipX = !(movement.x > 0.0f);
+            }
         }
         else
         {

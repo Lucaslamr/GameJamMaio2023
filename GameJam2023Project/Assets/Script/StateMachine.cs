@@ -4,6 +4,7 @@ using UnityEngine;
 
 
 public enum PlayerEstates {Idle, Walk}
+[System.Serializable]
 public class StateMachine
 {
     [SerializeField]
@@ -12,6 +13,8 @@ public class StateMachine
     private AStates[] states;
     [Header("Movement")]
     public float moveSpeed = 5f;
+    [Header("Animation")]
+    public int timer = 150;
 
     public void OnBegin(PlayerController player) 
     {
