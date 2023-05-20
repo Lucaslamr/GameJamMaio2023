@@ -15,6 +15,7 @@ public class Idle : AStates
     public override void OnBegin()
     {
         Debug.Log("Idle");
+        audioSource.Stop();
         animator.SetBool(transitionParam, false);
         timing = state.timer;
         animator.SetFloat(speedParam, 0.0f);

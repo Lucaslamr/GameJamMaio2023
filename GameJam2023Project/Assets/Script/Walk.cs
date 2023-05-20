@@ -15,11 +15,13 @@ public class Walk : AStates
     public override void OnBegin()
     {
         animator.SetBool(transitionParam, false);
+        audioSource.Play();
         nextState = PlayerEstates.Walk;
     }
     public override PlayerEstates OnUpdate()
     {
-        animator.SetFloat(speedParam, Mathf.Abs(Mathf.Max(Mathf.Pow(body.velocity.x,2.0f), Mathf.Pow(body.velocity.y,2.0f))));
+        animator.SetFloat(speedParam, Mathf.Max(Mathf.Abs(movement.x), Mathf.Abs(movement.y)));
+
         movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         if (movement.sqrMagnitude > 0.1f)
         {

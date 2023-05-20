@@ -10,6 +10,7 @@ public abstract class AStates
     protected Animator animator;
     protected PlayerController player;
     protected StateMachine state;
+    protected AudioSource audioSource;
     protected static readonly int speedParam = Animator.StringToHash("Speed");
     protected static readonly int transitionParam = Animator.StringToHash("Transition");
 
@@ -18,6 +19,7 @@ public abstract class AStates
         player = _player;
         animator = _player.GetComponent<Animator>();
         body = _player.GetComponent<Rigidbody2D>();
+        audioSource = _player.GetComponent<AudioSource>();
         state = _state;
     }
     public abstract void OnBegin();
