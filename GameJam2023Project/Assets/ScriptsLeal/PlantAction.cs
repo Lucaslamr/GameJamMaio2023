@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlantAction : MonoBehaviour
 {
-    bool started = false;
     public GameObject canvasPuzzle;
     CapsuleCollider2D _collider;
     public int[] puzzleSequence;
@@ -25,8 +24,7 @@ public class PlantAction : MonoBehaviour
             return;
         }
             
-        if(Input.GetKeyDown(KeyCode.Space) & !started){
-            started = true;
+        if(Input.GetKeyDown(KeyCode.Space) ){
             TopDownMovement.canMove = false;
             Debug.Log(TopDownMovement.canMove);
             canvasPuzzle.SetActive(true);
