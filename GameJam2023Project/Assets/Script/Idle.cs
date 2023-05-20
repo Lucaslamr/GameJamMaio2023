@@ -14,11 +14,12 @@ public class Idle : AStates
         animator.SetFloat(speedParam, 0.0f);
         nextState = PlayerEstates.Idle;
         movement = new Vector2(0.0f,0.0f);
+        body.velocity = movement;
     }
 
     public override PlayerEstates OnUpdate() 
     {
-        if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0.1f)
+        if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0.1f || Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0.1f)
         {
             nextState = PlayerEstates.Walk;
         }

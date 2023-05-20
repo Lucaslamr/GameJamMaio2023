@@ -18,7 +18,7 @@ public class Walk : AStates
     public override PlayerEstates OnUpdate()
     {
         animator.SetFloat(speedParam, Mathf.Abs(body.velocity.x));
-        movement = new Vector2(Input.GetAxisRaw("Horizontal") * state.moveSpeed, 0.0f);
+        movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         if (movement.sqrMagnitude > 0.1f)
         {
             srenderer.flipX = !(movement.x > 0.0f);
