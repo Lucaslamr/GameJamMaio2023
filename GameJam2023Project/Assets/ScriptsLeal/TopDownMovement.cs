@@ -8,6 +8,8 @@ public class TopDownMovement : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    public static bool canMove = true;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component
@@ -15,6 +17,10 @@ public class TopDownMovement : MonoBehaviour
 
     void Update()
     {
+        if(!canMove){
+            return;
+        }
+
         // Get input from horizontal and vertical axes
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");

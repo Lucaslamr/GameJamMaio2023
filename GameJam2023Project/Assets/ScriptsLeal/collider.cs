@@ -22,7 +22,7 @@ public class collider : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // Handle collision with tilemap here
-            Debug.Log("Player collided with tilemap.");
+            //Debug.Log("Player collided with tilemap.");
         }
     }
 }
