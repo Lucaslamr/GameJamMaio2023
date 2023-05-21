@@ -9,6 +9,9 @@ public class PuzzleManager : MonoBehaviour
     public Button[] buttons = new Button[4];
 
     public GameObject canvas;
+    public GameObject canvasFlowers;
+
+    public static PlantSpot plantSpot;
 
     bool canPlay = false;
     int index;
@@ -16,8 +19,8 @@ public class PuzzleManager : MonoBehaviour
     Color[] colors = new Color[] {new Color(255,0,0,255), new Color(0,0,255,255), new Color(0,255,0,255) ,new Color(255,255,0,255)};
     public void Start()
     {
-        Debug.Log("Start");
-        StartCoroutine(flashPuzzle());
+       
+        //StartCoroutine(flashPuzzle());
     }
     void OnEnable()
     {
@@ -26,6 +29,10 @@ public class PuzzleManager : MonoBehaviour
     }
 
     IEnumerator flashPuzzle(){
+        foreach(Button b in buttons){
+           b.interactable = false;
+        }
+
         canPlay = false;
         yield return new WaitForSeconds(2);
         foreach(int i in puzzleSequence){
@@ -38,6 +45,10 @@ public class PuzzleManager : MonoBehaviour
             image.color = oldColor;
         }
         canPlay = true;
+
+        foreach(Button b in buttons){
+           b.interactable = true;
+        }
     }
 
     public void checkButton(int i){
@@ -51,7 +62,8 @@ public class PuzzleManager : MonoBehaviour
         image = buttons[i].GetComponent<Image>();
         oldColor = image.color;
         image.color = colors[i];
-        //yield return new WaitForSeconds(2);
+        StartCoroutine(wait(1));
+        image.color = oldColor;
 
         if(i == puzzleSequence[index]){
             index++;
@@ -63,7 +75,14 @@ public class PuzzleManager : MonoBehaviour
         if(index == puzzleSequence.Length){
             TopDownMovement.canMove = true;
             canvas.SetActive(false);
+            canvasFlowers.SetActive(true);
+            plantSpot.OnFinishedMinigame();
+            plantSpot = null;
         }
+    }
+
+    IEnumerator wait(float sec){
+        yield return new WaitForSeconds(sec);
     }
 
 

@@ -4,11 +4,15 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class GameManager : IPresistentSingleton<GameManager>
 {
 
     private string _currentScene;
     public System.Action<string> OnSceneLoaded;
+
+    public static int[] flores = new int[] {0,0,0,0,0,0,0};
+    public static int[] floresTotal = new int[] {0,0,0,0,0,0,0};
 
     [SerializeField]
     private GameState _gameState;

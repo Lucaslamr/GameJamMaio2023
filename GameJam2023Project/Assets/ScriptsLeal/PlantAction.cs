@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlantAction : MonoBehaviour
 {
+    public TextMeshProUGUI textMessage;
     public GameObject canvasPuzzle;
+    public GameObject canvasFlowers;
     CapsuleCollider2D _collider;
-    public int[] puzzleSequence;
+    int[] puzzleSequence;
+    public static PlantSpot plantSpot;
+
+    KeyCode plantKey = KeyCode.Space;
 
     LayerMask layer;
 
@@ -17,43 +24,43 @@ public class PlantAction : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         if(!canStart)
         {
             return;
         }
             
-        if(Input.GetKeyDown(KeyCode.Space) ){
+        if(Input.GetKeyDown(plantKey)  && plantSpot.canPlay ){
             TopDownMovement.canMove = false;
-            Debug.Log(TopDownMovement.canMove);
             canvasPuzzle.SetActive(true);
+            canvasFlowers.SetActive(false);
             PuzzleManager.puzzleSequence = puzzleSequence;
+            PuzzleManager.plantSpot = plantSpot;
+            textMessage.text = "";
         }
     }
 
-    
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
+    private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("PlantSpot"))
         {
             // Player entered the trigger
             canStart = true;
-            if(other.GetComponent<PlantSpot>() != null)
-                puzzleSequence = other.GetComponent<PlantSpot>().puzzleSequence;
-            Debug.Log("Player entered the trigger.");
+            if(other.GetComponent<PlantSpot>() != null){
+                plantSpot = other.GetComponent<PlantSpot>();
+                puzzleSequence = plantSpot.puzzleSequence;
+                if(plantSpot.canPlay){
+                    textMessage.text = "Aperte '"+ plantKey +"' para plantar";
+                }
+            }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("PlantSpot"))
-        {
-            // Player exited the trigger
+    private void OnTriggerExit2D(Collider2D other) {
+        if (other.CompareTag("PlantSpot")) {
             canStart = false;
-            Debug.Log("Player exited the trigger.");
         }
+
+        textMessage.text = "";
     }
     
     
