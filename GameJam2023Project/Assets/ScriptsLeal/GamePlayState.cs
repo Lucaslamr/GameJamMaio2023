@@ -11,22 +11,12 @@ public class GamePlayState : IState
     {
         nextState = EState.GamePlay;
         GameManager.Instance.OnSceneLoaded += OnSceneLoaded;
-        GameManager.Instance.LoadScene("GamePlay");
+        GameManager.Instance.LoadScene("Mapa");
         deaths = 0;
         starded = false;
     }
     public override EState OnUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && starded)
-        {
-            Color color = Camera.main.backgroundColor;
-            color.b += 0.3f;
-            Camera.main.backgroundColor = color;
-            deaths++;
-            if(deaths > 2)
-                nextState = EState.MainMenu;
-        }
-
         return nextState;
     }
 

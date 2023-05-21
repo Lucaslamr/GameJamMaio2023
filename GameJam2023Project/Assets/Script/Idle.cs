@@ -6,6 +6,10 @@ using UnityEngine;
 public class Idle : AStates
 {
     private int timing;
+    private float fadeTiming;
+    private bool faded;
+
+    
 
 
     public Idle(PlayerController _player, StateMachine _state) : base(_player, _state)
@@ -15,7 +19,9 @@ public class Idle : AStates
     public override void OnBegin()
     {
         Debug.Log("Idle");
-        audioSource.Stop();
+        //audioSource.Stop();
+        faded = false;
+        fadeTiming = 0.0f;
         animator.SetBool(transitionParam, false);
         timing = state.timer;
         animator.SetFloat(speedParam, 0.0f);
@@ -26,19 +32,35 @@ public class Idle : AStates
 
     public override PlayerEstates OnUpdate() 
     {
+        
         if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0.1f || Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0.1f)
-        {
-            nextState = PlayerEstates.Walk;
+        { 
+            if(!puzzles)
+                nextState = PlayerEstates.Walk;
         }
         if (timing == 0) 
         {
             animator.SetBool(transitionParam, true);
         }
+        //Fade Out steps
+
+        if(fadeTiming < state.fadeDuration)
+        {
+            fadeTiming += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(0.48f, 0.0f, fadeTiming/state.fadeDuration);
+        }
+        else if(!faded)
+        {
+            audioSource.Stop();
+            faded = true;
+        }
+
 
         return nextState;
     }
     public override void OnFixedUpdate()
     {
         timing -= 1;
+
     }
 }

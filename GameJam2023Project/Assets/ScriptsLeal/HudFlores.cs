@@ -8,7 +8,9 @@ public class HudFlores : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        for(int i = 0; i <7; i++){
+            UpdateHud( i);
+        }
     }
 
     // Update is called once per frame

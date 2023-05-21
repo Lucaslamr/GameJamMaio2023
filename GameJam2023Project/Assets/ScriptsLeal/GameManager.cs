@@ -12,7 +12,7 @@ public class GameManager : IPresistentSingleton<GameManager>
     public System.Action<string> OnSceneLoaded;
 
     public static int[] flores = new int[] {0,0,0,0,0,0,0};
-    public static int[] floresTotal = new int[] {0,0,0,0,0,0,0};
+    public static int[] floresTotal = new int[] {6,7,8,12,9,11,10};
 
     [SerializeField]
     private GameState _gameState;

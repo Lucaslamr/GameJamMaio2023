@@ -12,7 +12,7 @@ public class GameState
 {
     private IState[] _states = { new MainMenuState(), new GamePlayState()};
     [SerializeField]
-    private EState _currentState = EState.MainMenu;
+    private EState _currentState = EState.GamePlay;
 
     public void OnBegin()
     {

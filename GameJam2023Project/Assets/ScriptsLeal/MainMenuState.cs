@@ -7,9 +7,9 @@ public class MainMenuState : IState
 {
     public override void OnBegin()
     {
-        nextState = EState.MainMenu;
+        nextState = EState.GamePlay;
         GameManager.Instance.OnSceneLoaded += OnSceneLoaded;
-        GameManager.Instance.LoadScene("MainMenu");
+        GameManager.Instance.LoadScene("Mapa");
 
     }
     public override EState OnUpdate()

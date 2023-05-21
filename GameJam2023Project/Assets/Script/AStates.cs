@@ -11,6 +11,7 @@ public abstract class AStates
     protected PlayerController player;
     protected StateMachine state;
     protected AudioSource audioSource;
+    public static bool puzzles = false;
     protected static readonly int speedParam = Animator.StringToHash("Speed");
     protected static readonly int transitionParam = Animator.StringToHash("Transition");
 

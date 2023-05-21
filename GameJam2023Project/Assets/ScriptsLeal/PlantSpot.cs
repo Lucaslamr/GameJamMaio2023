@@ -6,12 +6,11 @@ public enum Flores { Centaurea, Girassol, Lirio, Orquidea, Rosa, Tulipa, Violeta
 
 public class PlantSpot : MonoBehaviour
 {
-    public GameObject corruptedTiles;
-    public GameObject purifiedTiles;
+    public PuzzleView puzzleView;
     public Sprite flowerSprite;
     public int[] puzzleSequence;
     public Flores flor;
-    public HudFlores hud;
+    
 
     public bool canPlay = true;
     
@@ -27,11 +26,8 @@ public class PlantSpot : MonoBehaviour
     }
 
     public void OnFinishedMinigame(){
-        GameManager.flores[((int)flor)] += 1;
         gameObject.GetComponent<SpriteRenderer>().sprite = flowerSprite;
-        hud.UpdateHud((int)flor);
-        corruptedTiles.SetActive(false);
-        purifiedTiles.SetActive(true);
+        puzzleView.verificaCompletou(((int)flor));
         canPlay = false;
     }
 }

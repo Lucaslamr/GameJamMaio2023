@@ -34,15 +34,16 @@ public class PuzzleManager : MonoBehaviour
         }
 
         canPlay = false;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         foreach(int i in puzzleSequence){
             Color oldColor = new Color(0,0,0,255);
             Image image = null;
             image = buttons[i].GetComponent<Image>();
             oldColor = image.color;
             image.color = colors[i];
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             image.color = oldColor;
+            yield return new WaitForSeconds(0.5f);
         }
         canPlay = true;
 
@@ -73,7 +74,7 @@ public class PuzzleManager : MonoBehaviour
         }
         
         if(index == puzzleSequence.Length){
-            TopDownMovement.canMove = true;
+            AStates.puzzles = false;
             canvas.SetActive(false);
             canvasFlowers.SetActive(true);
             plantSpot.OnFinishedMinigame();

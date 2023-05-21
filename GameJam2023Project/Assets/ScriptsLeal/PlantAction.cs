@@ -31,7 +31,7 @@ public class PlantAction : MonoBehaviour
         }
             
         if(Input.GetKeyDown(plantKey)  && plantSpot.canPlay ){
-            TopDownMovement.canMove = false;
+            AStates.puzzles = true;
             canvasPuzzle.SetActive(true);
             canvasFlowers.SetActive(false);
             PuzzleManager.puzzleSequence = puzzleSequence;

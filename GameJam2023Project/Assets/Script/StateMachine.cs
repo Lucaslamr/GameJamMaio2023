@@ -15,6 +15,7 @@ public class StateMachine
     public float moveSpeed = 5f;
     [Header("Animation")]
     public int timer = 150;
+    public float fadeDuration = 0.5f;
 
     public void OnBegin(PlayerController player) 
     {
